@@ -49,7 +49,7 @@ def main():
     print("\nExecutando AGBO...")
     start = time.time()
 
-    best_solution = genetic_algorithm_labeling(
+    best_solution, lambda_value, labeling = genetic_algorithm_labeling(
         graph,
         population_size=population_size,
         generations=generations,
@@ -60,7 +60,8 @@ def main():
     duration = end - start
 
     print(f"\nMelhor ordem encontrada: {best_solution}")
-    # print(f"λ(G) = {lambda_value}")
+    print(f"λ(G) = {lambda_value}")
+    print(f"Melhor solução encontrada: {labeling}")
     print(f"Tempo de execução: {duration:.2f} segundos")
 
     # Salvar resultado em arquivo
@@ -69,7 +70,8 @@ def main():
         f.write(f"Instância: {graph_path}\n")
         f.write(f"Número de vértices: {graph.number_of_nodes()}\n")
         f.write(f"Melhor ordem: {best_solution}\n")
-        # f.write(f"λ(G): {lambda_value}\n")
+        f.write(f"λ(G): {lambda_value}\n")
+        f.write(f"Melhor solução encontrada: {labeling}\n")
         f.write(f"Tempo: {duration:.2f} segundos\n")
 
     print("\n✅ Resultado salvo em results/caminho_result.txt")

@@ -14,9 +14,9 @@ A heurística gulosa é utilizada como função de aptidão, avaliando o valor d
 ## 📂 Estrutura do Projeto
 
 - `src/`: Código-fonte do algoritmo genético
+  - `crossover.py`: Função de crossover para cruzamento de indivíduos
   - `ga.py`: Funções para execução do algoritmo genético
   - `greedy.py`: Heurística gulosa para avaliação de indivíduos
-  - `crossover.py`: Função de crossover para cruzamento de indivíduos
   - `mutation.py`: Função de mutação para alteração de indivíduos
   - `selection.py`: Função de seleção para escolha de pais
   - `utils.py`: Funções auxiliares para manipulação de grafos e ordenações

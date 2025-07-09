@@ -24,4 +24,4 @@ def greedy_labeling(graph, order):
         f[i] = min([x for x in possible_labeling if x not in Pro[i]])
 
         k = max(f[i], k)
-    return k
+    return k, f
