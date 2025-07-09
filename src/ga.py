@@ -11,8 +11,11 @@ def fitness_function(graph, order):
 
 def genetic_algorithm_labeling(graph, population_size, generations, mutation_rate):
     population = initialize_population(population_size, graph.nodes())
+    convergence = []
     for _ in range(generations):
         fitness_values = [fitness_function(graph, individual)[0] for individual in population]
+
+        convergence.append(min(fitness_values)) 
 
         elites = sorted(population, key=lambda x: fitness_function(graph, x)[0], reverse=False)[:2]
         new_population = elites
@@ -30,4 +33,4 @@ def genetic_algorithm_labeling(graph, population_size, generations, mutation_rat
 
     lambda_value, labeling = fitness_function(graph, best)
 
-    return best, lambda_value, labeling
+    return best, lambda_value, labeling, convergence

@@ -1,9 +1,11 @@
+import random
 import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 import networkx as nx
 from src.ga import genetic_algorithm_labeling
+from experiments.plot_convergence import plot_convergence
 import time
 
 
@@ -12,7 +14,7 @@ def generate_default_graph(path):
     Gera um grafo caminho (P10) e salva no formato GraphML.
     """
     print("⚠️  Arquivo de grafo está vazio ou ausente. Gerando P₁₀ como fallback...")
-    G = nx.path_graph(10)
+    G = nx.path_graph(150)
     os.makedirs(os.path.dirname(path), exist_ok=True)
     nx.write_graphml(G, path)
 
@@ -20,7 +22,7 @@ def generate_default_graph(path):
 def load_graph(path):
     """
     Carrega um grafo no formato GraphML.
-    Se o arquivo estiver vazio ou ausente, gera um grafo P₁₀.
+    Se o arquivo estiver vazio ou ausente, gera um grafo padrão.
     """
     if not os.path.exists(path) or os.path.getsize(path) == 0:
         generate_default_graph(path)
@@ -29,13 +31,13 @@ def load_graph(path):
         return nx.read_graphml(path)
     except Exception as e:
         print(f"Erro ao carregar o grafo: {e}")
-        print("Gerando grafo padrão P₁₀...")
+        print("Gerando grafo padrão...")
         generate_default_graph(path)
         return nx.read_graphml(path)
 
 
 def main():
-    graph_path = "data/caminho.graphml"
+    graph_path = "data/grafo.graphml"
     graph = load_graph(graph_path)
 
     print(f"Instância carregada: {graph_path}")
@@ -44,12 +46,12 @@ def main():
     # Parâmetros do algoritmo
     population_size = 50
     generations = 100
-    mutation_rate = 0.1
+    mutation_rate = 0.05
 
     print("\nExecutando AGBO...")
     start = time.time()
 
-    best_solution, lambda_value, labeling = genetic_algorithm_labeling(
+    best_solution, lambda_value, labeling, convergence = genetic_algorithm_labeling(
         graph,
         population_size=population_size,
         generations=generations,
@@ -63,6 +65,8 @@ def main():
     print(f"λ(G) = {lambda_value}")
     print(f"Melhor solução encontrada: {labeling}")
     print(f"Tempo de execução: {duration:.2f} segundos")
+
+    plot_convergence(convergence, title="Convergência - Caminho P₁₀₀", save_path="results/convergencia.png")
 
     # Salvar resultado em arquivo
     os.makedirs("results", exist_ok=True)
