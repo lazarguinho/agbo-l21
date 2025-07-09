@@ -34,7 +34,7 @@ A heurística gulosa é utilizada como função de aptidão, avaliando o valor d
 1. Clone o repositório:
 
 ```bash
-git clone https://github.com/mateuspedrosa/agbo-l21.git
+git clone https://github.com/lazarguinho/agbo-l21
 cd agbo-l21
 ```
 
