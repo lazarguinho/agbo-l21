@@ -12,6 +12,7 @@ Este projeto implementa uma abordagem baseada em algoritmos genéticos para reso
 A heurística gulosa é utilizada como função de aptidão, avaliando o valor de $\lambda(G)$ associado à ordem dos vértices proposta por cada indivíduo da população.
 
 ## 📂 Estrutura do Projeto
+
 - `src/`: Código-fonte do algoritmo genético
   - `ga.py`: Funções para execução do algoritmo genético
   - `greedy.py`: Heurística gulosa para avaliação de indivíduos
