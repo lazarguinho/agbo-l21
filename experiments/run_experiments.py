@@ -11,10 +11,10 @@ import time
 
 def generate_default_graph(path):
     """
-    Gera um grafo caminho (P10) e salva no formato GraphML.
+    Gera um grafo caminho (P50) e salva no formato GraphML.
     """
     print("⚠️  Arquivo de grafo está vazio ou ausente. Gerando P₁₀ como fallback...")
-    G = nx.path_graph(150)
+    G = nx.path_graph(50)
     os.makedirs(os.path.dirname(path), exist_ok=True)
     nx.write_graphml(G, path)
 
@@ -44,9 +44,9 @@ def main():
     print(f"Número de vértices: {graph.number_of_nodes()}")
 
     # Parâmetros do algoritmo
-    population_size = 50
-    generations = 100
-    mutation_rate = 0.05
+    population_size = 500
+    generations = 50
+    mutation_rate = 0.7
 
     print("\nExecutando AGBO...")
     start = time.time()
@@ -66,7 +66,7 @@ def main():
     print(f"Melhor solução encontrada: {labeling}")
     print(f"Tempo de execução: {duration:.2f} segundos")
 
-    plot_convergence(convergence, title="Convergência - Caminho P₁₀₀", save_path="results/convergencia.png")
+    plot_convergence(convergence, title="Convergência - Caminho P50", save_path="results/convergencia.png")
 
     # Salvar resultado em arquivo
     os.makedirs("results", exist_ok=True)
