@@ -1,0 +1,22 @@
+# Cache e arquivos temporários
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Ambientes virtuais
+.env/
+.venv/
+env/
+venv/
+
+# Arquivos do sistema/macOS
+.DS_Store
+
+# IDEs/VSCode
+.vscode/
+.idea/
+
+# Arquivos Python compilados
+*.so
+*.dll
+*.dylib
