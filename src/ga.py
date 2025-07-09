@@ -10,8 +10,8 @@ def fitness_function(graph, order):
     return greedy_labeling(graph, order)
 
 
-def genetic_algorithm_labeling(population_size, graph, generations, mutation_rate):
-    population = initialize_population(population_size, graph.number_of_nodes())
+def genetic_algorithm_labeling(graph, population_size, generations, mutation_rate):
+    population = initialize_population(population_size, graph.nodes())
     for _ in range(generations):
         fitness_values = [fitness_function(graph, individual) for individual in population]
 

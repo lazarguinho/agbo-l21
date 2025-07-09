@@ -7,15 +7,34 @@ from src.ga import genetic_algorithm_labeling
 import time
 
 
+def generate_default_graph(path):
+    """
+    Gera um grafo caminho (P10) e salva no formato GraphML.
+    """
+    print("⚠️  Arquivo de grafo está vazio ou ausente. Gerando P₁₀ como fallback...")
+    G = nx.path_graph(10)
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    nx.write_graphml(G, path)
+
+
 def load_graph(path):
     """
     Carrega um grafo no formato GraphML.
+    Se o arquivo estiver vazio ou ausente, gera um grafo P₁₀.
     """
-    return nx.read_graphml(path)
+    if not os.path.exists(path) or os.path.getsize(path) == 0:
+        generate_default_graph(path)
+
+    try:
+        return nx.read_graphml(path)
+    except Exception as e:
+        print(f"Erro ao carregar o grafo: {e}")
+        print("Gerando grafo padrão P₁₀...")
+        generate_default_graph(path)
+        return nx.read_graphml(path)
 
 
 def main():
-    # Caminho da instância
     graph_path = "data/caminho.graphml"
     graph = load_graph(graph_path)
 
@@ -53,7 +72,7 @@ def main():
         # f.write(f"λ(G): {lambda_value}\n")
         f.write(f"Tempo: {duration:.2f} segundos\n")
 
-    print("\nResultado salvo em results/caminho_result.txt")
+    print("\n✅ Resultado salvo em results/caminho_result.txt")
 
 
 if __name__ == "__main__":
