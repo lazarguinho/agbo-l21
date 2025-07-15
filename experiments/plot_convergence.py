@@ -2,21 +2,34 @@ import matplotlib.pyplot as plt
 import os
 
 
-def plot_convergence(convergence, title="Curva de Convergência do AGBO", save_path="results/convergencia.png"):
-    if not convergence:
-        print("⚠️ Lista de convergência vazia. Nenhum gráfico gerado.")
-        return
+import matplotlib.pyplot as plt
 
-    os.makedirs(os.path.dirname(save_path), exist_ok=True)
 
-    plt.figure(figsize=(8, 5))
-    plt.plot(convergence, marker='o', linestyle='-')
-    plt.title(title)
+def plot_convergence(convergences, title=None, save_path=None):
+    """
+    Plota múltiplas curvas de convergência.
+
+    Parameters:
+    - convergences: lista de listas, onde cada sublista representa a evolução de uma execução.
+    - title: título do gráfico.
+    - save_path: caminho para salvar o gráfico.
+    """
+    plt.figure()
+
+    for i, curve in enumerate(convergences):
+        plt.plot(curve, label=f'Execução {i+1}', linewidth=1)
+
     plt.xlabel("Geração")
     plt.ylabel("λ(G)")
+    if title:
+        plt.title(title)
+    plt.legend()
     plt.grid(True)
-    plt.tight_layout()
-    plt.savefig(save_path)
-    plt.close()
 
-    print(f"📈 Gráfico de convergência salvo em: {save_path}")
+    if save_path:
+        plt.savefig(save_path, bbox_inches="tight")
+        print(f"📈 Gráfico de convergência salvo em: {save_path}")
+    else:
+        plt.show()
+
+    plt.close()

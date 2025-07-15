@@ -31,6 +31,6 @@ def genetic_algorithm_labeling(graph, population_size, generations, mutation_rat
 
     best = min(population, key=lambda x: fitness_function(graph, x)[0])
 
-    lambda_value, labeling = fitness_function(graph, best)
+    span_value, labeling = fitness_function(graph, best)
 
-    return best, lambda_value, labeling, convergence
+    return best, span_value, labeling, convergence

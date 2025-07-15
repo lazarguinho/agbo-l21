@@ -1,0 +1,13 @@
+Instância: completo_2.graphml
+Número de vértices: 20
+Seed base: 43
+Execuções por grafo: 5
+
+Melhor span(G): 38
+Melhor ordem: [10, 3, 13, 1, 7, 6, 15, 8, 9, 16, 19, 14, 0, 12, 11, 18, 2, 4, 17, 5]
+Melhor solução encontrada: {10: 0, 3: 2, 13: 4, 1: 6, 7: 8, 6: 10, 15: 12, 8: 14, 9: 16, 16: 18, 19: 20, 14: 22, 0: 24, 12: 26, 11: 28, 18: 30, 2: 32, 4: 34, 17: 36, 5: 38}
+
+Span(G) médio: 38.00
+Tempo médio: 5.26 segundos
+Valores individuais de span(G): [38, 38, 38, 38, 38]
+Tempos individuais: [5.18, 5.28, 5.34, 5.22, 5.31]
