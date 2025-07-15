@@ -1,8 +1,4 @@
 import matplotlib.pyplot as plt
-import os
-
-
-import matplotlib.pyplot as plt
 
 
 def plot_convergence(convergences, title=None, save_path=None):
